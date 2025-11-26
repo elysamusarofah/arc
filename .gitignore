@@ -78,3 +78,8 @@ agenthub/agents/youtube/db
 
 # Mobile development
 android-sdk/
+
+# Uploaded files (exclude from deployment, keep background image)
+backend/uploads/*
+!backend/uploads/arcium1_bg.png
+!backend/uploads/gif.worker.js
