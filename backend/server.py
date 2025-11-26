@@ -175,6 +175,16 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+@app.on_event("startup")
+async def startup_db_client():
+    """Create database indexes on startup"""
+    try:
+        # Create unique index on id field for faster lookups
+        await db.profiles.create_index("id", unique=True)
+        logger.info("Database indexes created successfully")
+    except Exception as e:
+        logger.warning(f"Failed to create indexes (may already exist): {e}")
+
 @app.on_event("shutdown")
 async def shutdown_db_client():
     client.close()
