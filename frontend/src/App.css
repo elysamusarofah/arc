@@ -1,34 +1,212 @@
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Rokkitt:wght@400;500;600;700;800;900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
+body {
+  font-family: 'Space Grotesk', sans-serif;
+  background: #0a0a0f;
+  color: #ffffff;
+  overflow-x: hidden;
 }
 
-.App-header {
-    background-color: #0f0f10;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+.App {
+  min-height: 100vh;
+  background: #0a0a0f;
 }
 
-.App-link {
-    color: #61dafb;
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
 }
 
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+::-webkit-scrollbar-track {
+  background: #0a0a0f;
 }
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #ff00ff, #8a2be2);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #8a2be2, #ff00ff);
+}
+
+/* Cyber Grid Background */
+.cyber-bg {
+  position: relative;
+  background: #0a0a0f;
+}
+
+.cyber-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(rgba(255, 0, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 0, 255, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  pointer-events: none;
+}
+
+/* Cyber Button */
+.cyber-button {
+  position: relative;
+  background: linear-gradient(135deg, #ff00ff, #8a2be2);
+  border: none;
+  color: white;
+  font-weight: 600;
+  padding: 12px 32px;
+  font-size: 16px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.3s;
+}
+
+.cyber-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: left 0.3s;
+}
+
+.cyber-button:hover::before {
+  left: 100%;
+}
+
+.cyber-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px rgba(255, 0, 255, 0.6),
+              0 0 40px rgba(138, 43, 226, 0.4);
+}
+
+.cyber-button:active {
+  transform: translateY(0);
+}
+
+/* Rectangular Profile Card */
+.profile-card-container {
+  perspective: 1000px;
+}
+
+.profile-card {
+  position: relative;
+  width: 400px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 2px solid #ff00ff;
+  border-radius: 16px;
+  padding: 40px 32px;
+  box-shadow: 
+    0 0 20px rgba(255, 0, 255, 0.4),
+    0 0 40px rgba(138, 43, 226, 0.2),
+    inset 0 0 20px rgba(255, 0, 255, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s;
+  font-family: 'Rokkitt', 'Courier New', serif;
+}
+
+/* Background image moved to HTML element for html2canvas compatibility */
+.profile-card-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  border-radius: 16px;
+}
+
+.profile-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.15);
+  pointer-events: none;
+  z-index: 1;
+  border-radius: 16px;
+}
+
+.profile-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 
+    0 0 30px rgba(255, 0, 255, 0.6),
+    0 0 60px rgba(138, 43, 226, 0.3),
+    inset 0 0 30px rgba(255, 0, 255, 0.15);
+}
+
+/* Umbrella Rain Animation */
+.umbrella-rain {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.umbrella {
+  position: absolute;
+  font-size: 20px;
+  opacity: 0.6;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  0% {
+    top: -10%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.6;
+  }
+  90% {
+    opacity: 0.6;
+  }
+  100% {
+    top: 110%;
+    opacity: 0;
+  }
+}
+
+.umbrella:nth-child(1) { left: 8%; animation-duration: 3.2s; animation-delay: 0s; }
+.umbrella:nth-child(2) { left: 22%; animation-duration: 3.8s; animation-delay: 0.4s; }
+.umbrella:nth-child(3) { left: 38%; animation-duration: 3.5s; animation-delay: 0.9s; }
+.umbrella:nth-child(4) { left: 52%; animation-duration: 4.1s; animation-delay: 0.2s; }
+.umbrella:nth-child(5) { left: 68%; animation-duration: 3.6s; animation-delay: 0.7s; }
+.umbrella:nth-child(6) { left: 82%; animation-duration: 3.9s; animation-delay: 0.1s; }
+.umbrella:nth-child(7) { left: 15%; animation-duration: 3.4s; animation-delay: 1.3s; }
+.umbrella:nth-child(8) { left: 60%; animation-duration: 4.0s; animation-delay: 1.0s; }
+
+/* Encrypted ID Style */
+.encrypted-id {
+  font-family: 'JetBrains Mono', monospace;
+  background: linear-gradient(90deg, #ff00ff, #ff1493);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+/* Scan Line Removed */

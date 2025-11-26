@@ -1,0 +1,81 @@
+/* gMPC Effect Overlay */
+.gmpc-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  pointer-events: none;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* Falling Umbrellas */
+.gmpc-umbrella {
+  position: absolute;
+  top: -50px;
+  font-size: 40px;
+  animation: gmpc-fall linear forwards;
+  opacity: 0.9;
+  filter: drop-shadow(0 0 10px rgba(138, 43, 226, 0.8));
+}
+
+@keyframes gmpc-fall {
+  0% {
+    top: -50px;
+    opacity: 0;
+    transform: rotate(0deg);
+  }
+  10% {
+    opacity: 0.9;
+  }
+  90% {
+    opacity: 0.9;
+  }
+  100% {
+    top: 110vh;
+    opacity: 0;
+    transform: rotate(360deg);
+  }
+}
+
+/* Cloud Text */
+.gmpc-cloud-text {
+  position: absolute;
+  font-size: 48px;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 
+    0 0 20px rgba(255, 255, 255, 0.8),
+    0 0 40px rgba(138, 43, 226, 0.6),
+    0 0 60px rgba(255, 0, 255, 0.4);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  padding: 20px 40px;
+  border-radius: 50px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  animation: gmpc-float 3s ease-in-out infinite, gmpc-fade-in 0.5s ease-out;
+  font-family: 'Space Grotesk', sans-serif;
+  letter-spacing: 4px;
+}
+
+@keyframes gmpc-float {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-20px) scale(1.05);
+  }
+}
+
+@keyframes gmpc-fade-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
